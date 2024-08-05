@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Transparent black overlay */
+            z-index: 0;
+        }
+        .hidden {
+            display: none;
+        }
+        #intro {
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 20px;
+            z-index: 1;
+        }
+        #sql-output {
+            white-space: pre-wrap;
+            margin-top: 20px;
+            font-size: 18px;
+            font-family: monospace;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            z-index: 1;
+            text-align: left;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            z-index: 1;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="video-background">
+        <source src="https://res.cloudinary.com/dxsom23dr/video/upload/v1722669511/WhatsApp_Video_2024-08-03_at_12.47.52_b7215b7f_otbfvr.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div> <!-- Transparent overlay -->
+    <div id="intro">Last year it was!</div>
+    <button id="click-me" onclick="showSQL()">Click Me</button>
+    <div id="sql-output" class="hidden"></div>
+
+    <script>
+        async function showSQL() {
+            document.querySelector('#intro').classList.add('hidden');
+            document.querySelector('#sql-output').classList.remove('hidden');
+            document.querySelector('#click-me').classList.add('hidden');
+
+            const response = await fetch('data.json');
+            const data = await response.json();
+
+            const sqlOutput = document.querySelector('#sql-output');
+            sqlOutput.innerHTML = '';
+
+            sqlOutput.innerHTML += '<h2>Class Performance</h2>';
+            data.ClassPerformance.forEach(item => {
+                sqlOutput.innerHTML += `<p><strong>${item.metric_name}:</strong> ${item.metric_value}</p>`;
+            });
+
+            sqlOutput.innerHTML += '<h2>Teaching Timeline</h2>';
+            data.TeachingTimeline.forEach(item => {
+                sqlOutput.innerHTML += `<p><strong>${item.event_month_year}:</strong> ${item.event_description}</p>`;
+            });
+
+            sqlOutput.innerHTML += '<h2>Birthday Message</h2>';
+            data.BirthdayMessage.forEach(item => {
+                sqlOutput.innerHTML += `<p>${item.message}</p>`;
+            });
+        }
+    </script>
+</body>
+</html>
+
