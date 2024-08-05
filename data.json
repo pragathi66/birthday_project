@@ -7,7 +7,7 @@
       { "event_month_year": "October 2023", "event_description": "Completed the course with an exceptional final RESULT. 🎓" }
     ],
     
-    "ClassPerformance": [
+    "DBMSSubjectPerformance": [
       { "metric_name": "Average Grade", "metric_value": "A 🏅" },
       { "metric_name": "Pass%", "metric_value": "95% 📈" }
     ],
