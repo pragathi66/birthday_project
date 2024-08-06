@@ -1,6 +1,6 @@
 {
     "TeachingTimeline": [
-      { "event_month_year": "June 2023", "event_description": "Started teaching OS then shifted to DBMS 📚" },
+      { "event_month_year": "June 2023", "event_description": "Started teaching OS then switched to DBMS 📚" },
       { "event_month_year": "July 2023", "event_description": "Introduced basic queries and optimization techniques. 🧑‍🏫" },
       { "event_month_year": "August 2023", "event_description": "Conducted hands-on sessions with real-world databases using ORACLE. 🔍" },
       { "event_month_year": "September 2023", "event_description": "Guided us through development using SQL. 🛠️" },
